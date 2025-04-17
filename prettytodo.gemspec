@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email       = [ "marisa.celina.lopez4@gmail.com" ]
   spec.homepage    = "https://github.com/celina-lopez/prettytodo"
   spec.summary     = "A prettier UI for Rails notes"
-  spec.description = "TODO: make pretty notes"
+  spec.description = "T O D O: make pretty notes"
   spec.license     = "MIT"
 
   spec.metadata["homepage_uri"] = spec.homepage
@@ -18,5 +18,5 @@ Gem::Specification.new do |spec|
     Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   end
 
-  spec.add_dependency "rails", ">= 7.2.2.1"
+  spec.add_dependency "rails", ">= 7.0.0"
 end

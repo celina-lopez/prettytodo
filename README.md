@@ -1,28 +1,25 @@
 # Prettytodo
-Short description and motivation.
+
+I discovered bin/rails notes and took it from there. Let my todos do the talkin!
 
 ## Usage
+
 How to use my plugin.
 
 ## Installation
+
 Add this line to your application's Gemfile:
 
 ```ruby
 gem "prettytodo"
 ```
 
-And then execute:
-```bash
-$ bundle
-```
+add to your routes.rb:
 
-Or install it yourself as:
-```bash
-$ gem install prettytodo
+```ruby
+mount Prettytodo::Engine => '/prettytodo' if Rails.env.development?
 ```
-
-## Contributing
-Contribution directions go here.
 
 ## License
+
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
