@@ -1,59 +1,52 @@
-<style>
-  h2, p {
-    padding-left: 30px;
-  }
-  table {
-    margin: 0;
-    border-collapse: collapse;
-    word-wrap:break-word;
-    table-layout: fixed;
-    width:100%;
-  }
-  table thead tr {
-    border-bottom: 2px solid #ddd;
-  }
-  table th {
-    padding-left: 30px;
-    text-align: left;
-  }
-  table thead th.tag, table thead th.line-no {
-    width: 10%;
-  }
-  table tbody tr {
-    border-bottom: 1px solid #ddd;
-  }
+<h1>Notes</h1>
+<%
+  colors = %w[purple orange green]
+  random = Random.new(415)
+%>
 
-  table td {
-    padding: 4px 30px;
-  }
+<div class="container">
+  <% @annotations_by_tag.keys.each do |tag| %>
+    <div class="column">
+      <h2><%= tag %></h2>
+      <% @annotations_by_tag[tag].each do |annotation| %>
+        <div class="task <%= colors[(random.rand(annotation.line)) % colors.size] %>">
+          <%= annotation.text %>
+          <div style="display: flex; font-size: 14px; margin-top: 7px;">
+            <div><%= annotation.file_name %>:<%= annotation.line %></div>
 
-</style>
-
-<h2>
-  prettytodo Notes
-</h2>
-
-<table id="route_table" class="table">
-  <thead>
-    <th>File Name</th>
-    <th class="line-no">Line No.</th>
-    <th class="tag">Tag</th>
-    <th>Description</th>
-  </thead>
-  <tbody>
-    <% @annotations.each do |file, annotations| %>
-      <% annotations.each.with_index do |annotation, index| %>
-        <tr>
-          <% if index == 0 %>]
-          <th rowspan="<%= annotations.size %>">
-              <%= file %>
-            </th>
-          <% end %>
-          <td class="line-no"><%= annotation.line %></td>
-          <td class="tag"><%= annotation.tag %></td>
-          <td><%= annotation.text %></td>
-        </tr>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              style="align-self: center; margin-left: 2px; cursor: pointer;"
+              onclick="copyToClipboard(this,'<%= annotation.file_name %>:<%= annotation.line %>')"
+              class="lucide lucide-copy-icon lucide-copy"
+            >
+              <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+              <path
+                d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+              />
+            </svg>
+            <div style="margin-left: 2px; display: none; color: green;" class="copied">
+              copied!
+            </div>
+          </div>
+        </div>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  function copyToClipboard(element, text) {
+    navigator.clipboard.writeText(text);
+    const copied = element.parentElement.querySelector('.copied');
+    copied.style.display = 'block';
+  }
+</script>
