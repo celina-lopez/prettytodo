@@ -2,6 +2,8 @@
 
 A Rails engine that transforms your code annotations into an organized, visual interface. Built on top of `bin/rails notes`, Pretty Todo makes managing your code todos a delightful experience :)
 
+<img width="1395" alt="Screenshot 2025-04-16 at 8 28 12 PM" src="https://github.com/user-attachments/assets/917a2f63-7567-4a13-83a0-f06b7ae2d5f8" />
+
 ## Features
 
 - Visual interface for your code annotations
